@@ -1,19 +1,14 @@
 package com.example.demo.view;
 
 import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Map;
 
 import com.example.demo.modal.Customer;
-import com.example.demo.repository.DeliveryPersonRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CustomerVO {
 
-    @Autowired
-    private DeliveryPersonRepository deliveryPersonRepository;
-
-    int billNumber;
+    Integer billNumber;
 
     String firstName;
 
@@ -25,13 +20,13 @@ public class CustomerVO {
 
     Date date;
 
-    String item;
-
     String address;
 
-    Integer price;
+    String email;
 
     String deliveryPerson;
+
+    Map<String,Integer> productModel;
 
     @JsonIgnore
     Customer customer;
@@ -47,17 +42,16 @@ public class CustomerVO {
         this.referenceName = customer.getReferenceName();
         this.phoneNumber = customer.getPhoneNumber();
         this.date = customer.getDate();
-        this.item = customer.getItem();
         this.address = customer.getAddress();
-        this.price = customer.getPrice();
+        this.email = customer.getEmail();
         this.deliveryPerson = customer.getDeliveryPerson().getName();
     }
 
-    public int getBillNumber() {
+    public Integer getBillNumber() {
         return billNumber;
     }
 
-    public void setBillNumber(int billNumber) {
+    public void setBillNumber(Integer billNumber) {
         this.billNumber = billNumber;
     }
 
@@ -101,14 +95,6 @@ public class CustomerVO {
         this.date = date;
     }
 
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -117,12 +103,12 @@ public class CustomerVO {
         this.address = address;
     }
 
-    public Integer getPrice() {
-        return price;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getDeliveryPerson() {
@@ -136,9 +122,7 @@ public class CustomerVO {
     public Customer getCustomer() {
         if(this.customer == null) {
             Customer cust = new Customer();
-            cust.setItem(this.item);
             cust.setAddress(this.address);
-            cust.setPrice(this.price);
             cust.setDate(this.date);
             cust.setPhoneNumber(this.phoneNumber);
             cust.setReferenceName(this.referenceName);
@@ -152,5 +136,13 @@ public class CustomerVO {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Map<String, Integer> getProductModel() {
+        return productModel;
+    }
+
+    public void setProductModel(Map<String, Integer> productModel) {
+        this.productModel = productModel;
     }
 }

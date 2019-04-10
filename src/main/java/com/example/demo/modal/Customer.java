@@ -1,19 +1,14 @@
 package com.example.demo.modal;
 
-import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "customer", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "bill_no", "date" }) })
 public class Customer {
     @Id
     @GeneratedValue(generator = "cust_id_generator")
@@ -25,49 +20,61 @@ public class Customer {
     private Long id;
 
     @Column(name = "bill_no", columnDefinition = "INTEGER")
-    int billNumber;
+    @NotNull(message = "Bill number can not be null")
+    Integer billNumber;
 
     @Column(name = "first_name", columnDefinition = "VARCHAR(50)")
+    @NotNull(message = "First name can not be null")
     String firstName;
 
     @Column(name = "last_name", columnDefinition = "VARCHAR(50)")
+    @NotNull(message = "Last name can not be null")
     String lastName;
 
     @Column(name = "reference_name", columnDefinition = "VARCHAR(50)")
     String referenceName;
 
     @Column(name = "phone_no",columnDefinition = "BIGINT")
+    @NotNull(message = "Phone number can not be null")
     Long phoneNumber;
 
     @Column(name = "date",columnDefinition = "DATE")
+    @NotNull(message = "Date can not be null")
     Date date;
 
-    @Column(name = "item",columnDefinition = "VARCHAR(50)")
-    String item;
-
     @Column(name = "address",columnDefinition = "VARCHAR(50)")
+    @NotNull(message = "Address can not be null")
     String address;
 
-    @Column(name = "price",columnDefinition = "INTEGER")
-    Integer price;
+    @Column(name = "email",columnDefinition = "VARCHAR(50)")
+    String email;
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "delivery_person_id",nullable = true)
+    @NotNull(message = "Delivery person can not be null")
     DeliveryPerson deliveryPerson;
+
+    @OneToMany(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "customer_id")
+    List<Product> productList;
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getBillNumber() {
+    public Integer getBillNumber() {
         return billNumber;
     }
 
-    public void setBillNumber(int billNumber) {
+    public void setBillNumber(Integer billNumber) {
         this.billNumber = billNumber;
     }
 
@@ -111,14 +118,6 @@ public class Customer {
         this.date = date;
     }
 
-    public String getItem() {
-        return item;
-    }
-
-    public void setItem(String item) {
-        this.item = item;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -127,12 +126,12 @@ public class Customer {
         this.address = address;
     }
 
-    public Integer getPrice() {
-        return price;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public DeliveryPerson getDeliveryPerson() {

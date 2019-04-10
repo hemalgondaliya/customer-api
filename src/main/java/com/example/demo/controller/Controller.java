@@ -1,10 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.modal.*;
+import com.example.demo.repository.ProductModelRepository;
 import io.swagger.annotations.ApiOperation;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.modal.Customer;
-import com.example.demo.modal.DeliveryPerson;
-import com.example.demo.modal.Response;
-import com.example.demo.modal.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.DeliveryPersonRepository;
@@ -41,6 +41,9 @@ public class Controller {
 
     @Autowired
     private DeliveryPersonRepository deliveryPersonRepository;
+
+    @Autowired
+    private ProductModelRepository modelRepository;
 
     @Autowired
     public Controller(AuthService authService) {
@@ -77,8 +80,22 @@ public class Controller {
     @ApiOperation(value = "Get customer list",response = Iterable.class)
     public ResponseEntity saveCustomer(@RequestBody(required = true) CustomerVO customerVO)
             throws SQLException {
+        if(customerVO.getDeliveryPerson() == null) {
+            return new ResponseEntity(new Response("Please choose delivery person",404), HttpStatus.BAD_REQUEST);
+        }
         Customer customer = customerVO.getCustomer();
+        List<Product> products = new ArrayList();
+        Map<String, Integer> productModels = customerVO.getProductModel();
+
+        for (Map.Entry<String, Integer> entry : productModels.entrySet()) {
+            ProductModel model = modelRepository.findByName(entry.getKey());
+            Product p = new Product();
+            p.setProductModel(model);
+            p.setPrice(entry.getValue());
+            products.add(p);
+        }
         customer.setDeliveryPerson(deliveryPersonRepository.findByName(customerVO.getDeliveryPerson()));
+        customer.setProductList(products);
         customerRepository.save(customer);
         return new ResponseEntity(new Response("Customer saved",200), HttpStatus.OK);
     }

@@ -6,9 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "delivery")
+@Table(name = "delivery_person")
 public class DeliveryPerson {
     @Id
     @GeneratedValue(generator = "delivery_id_generator")
@@ -20,23 +21,23 @@ public class DeliveryPerson {
     private Long id;
 
     @Column(name = "name", columnDefinition = "VARCHAR(50)")
+    @NotNull(message = "Delivery person name can not be null")
     String name;
 
     @Column(name = "phone_no",columnDefinition = "BIGINT")
+    @NotNull(message = "Phone number can not be null")
     Long phoneNumber;
 
     @Column(name = "address",columnDefinition = "VARCHAR(50)")
+    @NotNull(message = "Address can not be null")
     String address;
 
     @Column(name = "tempo_no",columnDefinition = "VARCHAR(50)")
+    @NotNull(message = "Tempo number can not be null")
     String tempoNumber;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
