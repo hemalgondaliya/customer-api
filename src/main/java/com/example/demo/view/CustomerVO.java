@@ -1,8 +1,7 @@
 package com.example.demo.view;
 
 import java.util.Date;
-import java.util.Map;
-
+import java.util.List;
 import com.example.demo.modal.Customer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,7 +25,7 @@ public class CustomerVO {
 
     String deliveryPerson;
 
-    Map<String,Integer> productModel;
+    List<ProductVO> selectedProducts;
 
     @JsonIgnore
     Customer customer;
@@ -138,11 +137,11 @@ public class CustomerVO {
         this.customer = customer;
     }
 
-    public Map<String, Integer> getProductModel() {
-        return productModel;
+    public List<ProductVO> getSelectedProducts() {
+        return selectedProducts;
     }
 
-    public void setProductModel(Map<String, Integer> productModel) {
-        this.productModel = productModel;
+    public void setSelectedProducts(List<ProductVO> selectedProducts) {
+        this.selectedProducts = selectedProducts;
     }
 }

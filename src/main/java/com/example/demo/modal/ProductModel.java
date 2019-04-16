@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "product_model")
@@ -22,15 +23,18 @@ public class ProductModel {
     )
     private Long id;
 
-    @Column(name = "name", columnDefinition = "VARCHAR(50)")
+    @Column(name = "name", columnDefinition = "VARCHAR(50)", unique = true)
+    @NotNull(message = "Model name can not be null")
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "brand_id",nullable = true)
+    @NotNull(message = "Model brand can not be null")
+    @JoinColumn(name = "brand_id")
     Brand brand;
 
-    @Column(name = "depricated", columnDefinition = "BOOLEAN")
-    private boolean depricated;
+    @Column(name = "deprecated", columnDefinition = "BOOLEAN")
+    @NotNull(message = "deprecated can not be null")
+    private boolean deprecated;
 
     public Long getId() {
         return id;
@@ -52,11 +56,11 @@ public class ProductModel {
         this.brand = brand;
     }
 
-    public boolean isDepricated() {
-        return depricated;
+    public boolean isDeprecated() {
+        return deprecated;
     }
 
-    public void setDepricated(boolean depricated) {
-        this.depricated = depricated;
+    public void setDeprecated(boolean deprecated) {
+        this.deprecated = deprecated;
     }
 }
