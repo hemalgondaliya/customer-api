@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -23,8 +24,8 @@ public class ProductModel {
     )
     private Long id;
 
-    @Column(name = "name", columnDefinition = "VARCHAR(50)", unique = true)
-    @NotNull(message = "Model name can not be null")
+    @Column(name = "name", columnDefinition = "VARCHAR(50)")
+    @NotBlank(message = "Model name can not be blank")
     private String name;
 
     @ManyToOne

@@ -17,6 +17,7 @@ public class Product {
 
     @OneToOne
     @JoinColumn(name = "product_model_id")
+    @NotNull(message = "Product model can not be null")
     ProductModel productModel;
 
     @Column(name = "ser_no", columnDefinition = "VARCHAR(50)")

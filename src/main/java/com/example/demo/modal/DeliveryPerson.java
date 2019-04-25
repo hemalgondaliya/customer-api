@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -21,7 +22,7 @@ public class DeliveryPerson {
     private Long id;
 
     @Column(name = "name", columnDefinition = "VARCHAR(50)")
-    @NotNull(message = "Delivery person name can not be null")
+    @NotBlank(message = "Delivery person name can not be blank")
     String name;
 
     @Column(name = "phone_no",columnDefinition = "BIGINT")
@@ -29,11 +30,11 @@ public class DeliveryPerson {
     Long phoneNumber;
 
     @Column(name = "address",columnDefinition = "VARCHAR(50)")
-    @NotNull(message = "Address can not be null")
+    @NotBlank(message = "Address can not be blank")
     String address;
 
     @Column(name = "tempo_no",columnDefinition = "VARCHAR(50)")
-    @NotNull(message = "Tempo number can not be null")
+    @NotBlank(message = "Tempo number can not be blank")
     String tempoNumber;
 
     public Long getId() {

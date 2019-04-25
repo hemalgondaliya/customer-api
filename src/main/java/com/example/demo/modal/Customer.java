@@ -4,11 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "customer", uniqueConstraints = {
-        @UniqueConstraint(columnNames = { "bill_no", "date" }) })
+        @UniqueConstraint(columnNames = { "bill_no", "phone_no" }) })
 public class Customer {
     @Id
     @GeneratedValue(generator = "cust_id_generator")
@@ -24,11 +25,11 @@ public class Customer {
     Integer billNumber;
 
     @Column(name = "first_name", columnDefinition = "VARCHAR(50)")
-    @NotNull(message = "First name can not be null")
+    @NotBlank(message = "First name can not be blank")
     String firstName;
 
     @Column(name = "last_name", columnDefinition = "VARCHAR(50)")
-    @NotNull(message = "Last name can not be null")
+    @NotBlank(message = "Last name can not be blank")
     String lastName;
 
     @Column(name = "reference_name", columnDefinition = "VARCHAR(50)")
@@ -43,19 +44,20 @@ public class Customer {
     Date date;
 
     @Column(name = "address",columnDefinition = "VARCHAR(50)")
-    @NotNull(message = "Address can not be null")
+    @NotBlank(message = "Address can not be blank")
     String address;
 
     @Column(name = "email",columnDefinition = "VARCHAR(50)")
     String email;
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "delivery_person_id",nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "delivery_person_id")
     @NotNull(message = "Delivery person can not be null")
     DeliveryPerson deliveryPerson;
 
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "customer_id")
+    @NotNull(message = "Product list can not be null")
     List<Product> productList;
 
     public List<Product> getProductList() {

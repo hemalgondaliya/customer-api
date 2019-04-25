@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "brand")
@@ -22,11 +22,11 @@ public class Brand {
     private Long id;
 
     @Column(name = "name", columnDefinition = "VARCHAR(50)")
-    @NotNull(message = "Brand name can not be null")
+    @NotBlank(message = "Brand name can not be blank")
     private String name;
 
     @Column(name = "category", columnDefinition = "VARCHAR(50)")
-    @NotNull(message = "Brand category number can not be null")
+    @NotBlank(message = "Brand category can not be blank")
     private String category;
 
     public Long getId() {
