@@ -7,6 +7,6 @@ import com.example.demo.modal.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-     public User findUsersByName(String userName);
-     public User findUsersById(Long id);
+     User findUsersByName(String userName);
+     User findUsersById(Long id);
 }

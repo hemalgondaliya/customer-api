@@ -21,7 +21,6 @@ public class ShowCustomerVO {
     String email;
     String deliveryPerson;
     List<Product> productList;
-    List<Payment> paymentList;
     Integer debitAmount;
     List<String> purchase;
 
@@ -31,7 +30,7 @@ public class ShowCustomerVO {
     public ShowCustomerVO() {
 
     }
-    public ShowCustomerVO(Customer customer, List<Payment> paymentList) {
+    public ShowCustomerVO(Customer customer, Integer debtAmount) {
         this.billNumber = customer.getBillNumber();
         this.firstName = customer.getFirstName();
         this.lastName = customer.getLastName();
@@ -40,17 +39,10 @@ public class ShowCustomerVO {
         this.date = customer.getDate();
         this.address = customer.getAddress();
         this.email = customer.getEmail();
+        this.debitAmount = debtAmount;
         this.deliveryPerson = customer.getDeliveryPerson().getName();
-        this.paymentList = paymentList;
         this.productList = customer.getProductList();
-        this.initDebitCalculation();
         this.initProducts();
-    }
-
-    private void initDebitCalculation() {
-        int billAmount = this.productList.stream().map(p -> p.getPrice()).collect(Collectors.summingInt(Integer::intValue));
-        int totalPaid = this.paymentList.stream().map(p -> p.getAmount()).collect(Collectors.summingInt(Integer::intValue));
-                this.debitAmount = billAmount -totalPaid;
     }
 
     private void initProducts() {
