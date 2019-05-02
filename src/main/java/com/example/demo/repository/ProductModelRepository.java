@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProductModelRepository extends JpaRepository<ProductModel, Long> {
     ProductModel findByName(String name);
     List<ProductModel> findAllByName(List<String> modelList);
+    List<ProductModel> findByBrand_IdAndDeprecated(Long id, boolean deprecated);
 }

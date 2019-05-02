@@ -27,17 +27,17 @@ public class ModelService {
     private BrandRepositiry brandRepositiry;
 
     public Map<String, List<AllProductVO>> getAllAvailableProduct() {
-        List<ProductModel> result = modelRepository.findAll();
 
-        Map<String, List<ProductModel>> finalResult =
-                result.stream().filter(model -> !model.isDeprecated()).collect(Collectors
-                        .groupingBy(model -> model.getBrand().getName() + "-" + model.getBrand()
-                                .getCategory()));
+        List<Brand> brandResult = brandRepositiry.findAll();
+        Map<String, List<ProductModel>> result = brandResult.stream()
+                .collect(Collectors.toMap(b -> b.getName() + "-" + b.getCategory(),
+                        b -> modelRepository.findByBrand_IdAndDeprecated(b.getId(), false)));
 
-        Map<String, List<AllProductVO>> optimisedResult = finalResult.entrySet().stream().collect(
+        Map<String, List<AllProductVO>> optimisedResult = result.entrySet().stream().collect(
                 Collectors.toMap(Map.Entry::getKey,
                         e -> e.getValue().stream().map(AllProductVO::new)
                                 .collect(Collectors.toList())));
+
 
         return optimisedResult;
     }
@@ -58,7 +58,7 @@ public class ModelService {
         }
     }
 
-    public ResponseEntity deprecateModel(ModelVO modelVO){
+    public ResponseEntity deprecateModel(ModelVO modelVO) {
         ProductModel m = modelRepository.findByName(modelVO.getModelName());
         if (modelVO.getBrandName().equals(m.getBrand().getName())) {
             m.setDeprecated(true);
