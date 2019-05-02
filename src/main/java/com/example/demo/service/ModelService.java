@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,13 +36,18 @@ public class ModelService {
                 .collect(Collectors.toMap(b -> b.getName() + "-" + b.getCategory(),
                         b -> modelRepository.findByBrand_IdAndDeprecated(b.getId(), false)));
 
-        Map<String, List<AllProductVO>> optimisedResult = result.entrySet().stream().collect(
-                Collectors.toMap(Map.Entry::getKey,
+        Map<String, List<AllProductVO>> optimisedResult = result.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey,
                         e -> e.getValue().stream().map(AllProductVO::new)
                                 .collect(Collectors.toList())));
 
+        LinkedHashMap<String, List<AllProductVO>> sortedResult = new LinkedHashMap<>();
+        optimisedResult.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEachOrdered(x -> sortedResult.put(x.getKey(), x.getValue()));
 
-        return optimisedResult;
+        return sortedResult;
     }
 
     public ResponseEntity addNewModel(ModelVO modelVO) {

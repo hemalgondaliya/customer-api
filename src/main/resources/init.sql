@@ -1,3 +1,6 @@
+#User Login
+INSERT INTO gayatri.user_login(id, name, password)VALUES (1, 'Hemal', '$2a$10$VqgLfQkxQXfv4HgwZwUXg.pyglLD2aZvCiQXhyadOm8Mc8LeASnPm');
+
 Brand
 INSERT INTO gayatri.brand (id, category, name) VALUES (1, 'Refrigerator', 'Samsung');
 INSERT INTO gayatri.brand (id, category, name) VALUES (2, 'Tv', 'Samsung');
@@ -16,8 +19,8 @@ INSERT INTO gayatri.brand (id, category, name) VALUES (14, 'WM', 'Bosch');
 INSERT INTO gayatri.brand (id, category, name) VALUES (15, 'Oven', 'Bosch');
 INSERT INTO gayatri.brand (id, category, name) VALUES (16, 'Dishwasher', 'Bosch');
 INSERT INTO gayatri.brand (id, category, name) VALUES (17, 'Washerdryer', 'Bosch');
-INSERT INTO gayatri.brand (id, category, name) VALUES (18, 'Sony', 'Tv');
-INSERT INTO gayatri.brand (id, category, name) VALUES (19, 'Sony', 'HT');
+INSERT INTO gayatri.brand (id, category, name) VALUES (18, 'Tv', 'Sony');
+INSERT INTO gayatri.brand (id, category, name) VALUES (19, 'HT', 'Sony');
 INSERT INTO gayatri.brand (id, category, name) VALUES (20, 'Refrigerator', 'Panasonic');
 INSERT INTO gayatri.brand (id, category, name) VALUES (21, 'Tv', 'Panasonic');
 INSERT INTO gayatri.brand (id, category, name) VALUES (22, 'WM', 'Panasonic');
@@ -51,10 +54,6 @@ INSERT INTO gayatri.product_model (id, deprecated, name, brand_id) VALUES (10, t
 INSERT INTO gayatri.delivery_person(id, address, name, phone_no, tempo_no) VALUES (1, 'xxx', 'Bapu', 9999999, 'GJ5-5446');
 INSERT INTO gayatri.delivery_person(id, address, name, phone_no, tempo_no) VALUES (2, 'xxx', 'Bhagat', 9999999, 'GJ5-5446');
 INSERT INTO gayatri.delivery_person(id, address, name, phone_no, tempo_no) VALUES (3, 'xxx', 'Self', 9999999, 'GJ5-5446');
-
-
-#User Login
-INSERT INTO gayatri.user_login(id, name, password)VALUES (1, 'Hemal', '$2a$10$VqgLfQkxQXfv4HgwZwUXg.pyglLD2aZvCiQXhyadOm8Mc8LeASnPm');
 
 
 #Deletion
