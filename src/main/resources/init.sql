@@ -1,7 +1,7 @@
-#User Login
+-- User Login
 INSERT INTO gayatri.user_login(id, name, password)VALUES (1, 'Hemal', '$2a$10$VqgLfQkxQXfv4HgwZwUXg.pyglLD2aZvCiQXhyadOm8Mc8LeASnPm');
 
-Brand
+-- Brand
 INSERT INTO gayatri.brand (id, category, name) VALUES (1, 'Refrigerator', 'Samsung');
 INSERT INTO gayatri.brand (id, category, name) VALUES (2, 'Tv', 'Samsung');
 INSERT INTO gayatri.brand (id, category, name) VALUES (3, 'WM', 'Samsung');

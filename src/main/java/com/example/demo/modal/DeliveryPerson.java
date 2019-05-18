@@ -16,7 +16,7 @@ public class DeliveryPerson {
     @GeneratedValue(generator = "delivery_id_generator")
     @SequenceGenerator(
             name = "delivery_id_generator",
-            sequenceName = "number_sequence",
+            sequenceName = "delivery_number_sequence",
             initialValue = 1
     )
     private Long id;

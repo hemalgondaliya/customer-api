@@ -11,7 +11,7 @@ public class ChequePayment {
     @GeneratedValue(generator = "chequepayment_id_generator")
     @SequenceGenerator(
             name = "chequepayment_id_generator",
-            sequenceName = "number_sequence",
+            sequenceName = "cheque_id_number_sequence",
             initialValue = 1
     )
     private Long id;

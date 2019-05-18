@@ -13,10 +13,10 @@ import javax.validation.constraints.NotBlank;
 public class Brand {
 
     @Id
-    @GeneratedValue(generator = "cust_id_generator")
+    @GeneratedValue(generator = "brand_id_generator")
     @SequenceGenerator(
             name = "brand_id_generator",
-            sequenceName = "number_sequence",
+            sequenceName = "brand_id_number_sequence",
             initialValue = 1
     )
     private Long id;

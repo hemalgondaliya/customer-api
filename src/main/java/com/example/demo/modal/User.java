@@ -14,7 +14,7 @@ public class User {
     @GeneratedValue(generator = "id_generator")
     @SequenceGenerator(
             name = "id_generator",
-            sequenceName = "number_sequence",
+            sequenceName = "user_id_number_sequence",
             initialValue = 1
     )
     private Long id;

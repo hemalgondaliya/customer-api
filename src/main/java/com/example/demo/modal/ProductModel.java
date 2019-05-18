@@ -19,7 +19,7 @@ public class ProductModel {
     @GeneratedValue(generator = "product_model_id_generator")
     @SequenceGenerator(
             name = "product_model_id_generator",
-            sequenceName = "number_sequence",
+            sequenceName = "product_number_sequence",
             initialValue = 1
     )
     private Long id;
