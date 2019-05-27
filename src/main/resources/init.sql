@@ -56,7 +56,7 @@ INSERT INTO gayatri.delivery_person(id, address, name, phone_no, tempo_no) VALUE
 INSERT INTO gayatri.delivery_person(id, address, name, phone_no, tempo_no) VALUES (3, 'xxx', 'Self', 9999999, 'GJ5-5446');
 
 
-#Deletion
+-- Deletion
 DROP TABLE IF EXISTS gayatri.brand CASCADE;
 DROP TABLE IF EXISTS gayatri.customer CASCADE;
 DROP TABLE IF EXISTS gayatri.product CASCADE;

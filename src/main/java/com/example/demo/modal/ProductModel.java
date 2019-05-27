@@ -1,13 +1,6 @@
 package com.example.demo.modal;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -19,7 +12,7 @@ public class ProductModel {
     @GeneratedValue(generator = "product_model_id_generator")
     @SequenceGenerator(
             name = "product_model_id_generator",
-            sequenceName = "product_number_sequence",
+            sequenceName = "product_model_number_sequence",
             initialValue = 1
     )
     private Long id;
