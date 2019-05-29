@@ -75,6 +75,13 @@ public class Controller {
                 HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/deliveryPerson/add", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "Add Deliver person", response = Iterable.class)
+    public ResponseEntity addDeliveryPerson(@RequestBody DeliveryPerson deliveryPerson) {
+        return deliveryPersonService.saveDeliveryPerson(deliveryPerson);
+    }
+
     @RequestMapping(value = "/model/all", method = RequestMethod.POST)
     @ResponseBody
     @ApiOperation(value = "Get all available Product list", response = Iterable.class)

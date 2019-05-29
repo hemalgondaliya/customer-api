@@ -93,7 +93,7 @@ ALTER TABLE gayatri.cheque_payment
 CREATE TABLE gayatri.delivery_person
 (
     id bigint NOT NULL,
-    address character varying(50) COLLATE pg_catalog."default",
+    address character varying(300) COLLATE pg_catalog."default",
     name character varying(50) COLLATE pg_catalog."default",
     phone_no bigint NOT NULL,
     tempo_no character varying(50) COLLATE pg_catalog."default",
@@ -115,7 +115,7 @@ ALTER TABLE gayatri.delivery_person
 CREATE TABLE gayatri.customer
 (
     id bigint NOT NULL,
-    address character varying(50) COLLATE pg_catalog."default",
+    address character varying(300) COLLATE pg_catalog."default",
     bill_no integer NOT NULL,
     date date NOT NULL,
     email character varying(50) COLLATE pg_catalog."default",
@@ -182,7 +182,7 @@ CREATE TABLE gayatri.product
 (
     id bigint NOT NULL,
     price integer NOT NULL,
-    ser_no character varying(50) COLLATE pg_catalog."default",
+    ser_no character varying(100) COLLATE pg_catalog."default",
     product_model_id bigint NOT NULL,
     customer_id bigint,
     CONSTRAINT product_pkey PRIMARY KEY (id),

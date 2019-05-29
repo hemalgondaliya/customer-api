@@ -8,4 +8,5 @@ import com.example.demo.modal.DeliveryPerson;
 @Repository
 public interface DeliveryPersonRepository extends JpaRepository<DeliveryPerson, Long> {
     DeliveryPerson findByName(String name);
+    DeliveryPerson findByPhoneNumber(Long phoneNumber);
 }
