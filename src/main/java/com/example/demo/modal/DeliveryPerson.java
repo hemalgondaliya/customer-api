@@ -17,7 +17,7 @@ public class DeliveryPerson {
     @SequenceGenerator(
             name = "delivery_id_generator",
             sequenceName = "delivery_number_sequence",
-            initialValue = 1
+            allocationSize = 1
     )
     private Long id;
 

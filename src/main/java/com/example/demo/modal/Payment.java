@@ -13,7 +13,7 @@ public class Payment {
     @SequenceGenerator(
             name = "payment_id_generator",
             sequenceName = "payment_id_number_sequence",
-            initialValue = 1
+            allocationSize = 1
     )
     private Long id;
 

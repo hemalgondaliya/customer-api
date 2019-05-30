@@ -13,7 +13,7 @@ public class ProductModel {
     @SequenceGenerator(
             name = "product_model_id_generator",
             sequenceName = "product_model_number_sequence",
-            initialValue = 1
+            allocationSize = 1
     )
     private Long id;
 

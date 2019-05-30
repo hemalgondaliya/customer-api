@@ -11,7 +11,7 @@ public class Product {
     @GeneratedValue(generator = "product_id_generator")
     @SequenceGenerator(name = "product_id_generator",
             sequenceName = "product_number_sequence",
-            initialValue = 1
+            allocationSize = 1
     )
     private Long id;
 

@@ -16,7 +16,7 @@ public class Customer {
     @SequenceGenerator(
             name = "cust_id_generator",
             sequenceName = "customer_id_number_sequence",
-            initialValue = 1
+            allocationSize = 1
     )
     private Long id;
 

@@ -12,7 +12,7 @@ public class ChequePayment {
     @SequenceGenerator(
             name = "chequepayment_id_generator",
             sequenceName = "cheque_id_number_sequence",
-            initialValue = 1
+            allocationSize = 1
     )
     private Long id;
 
