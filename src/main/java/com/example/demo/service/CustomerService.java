@@ -20,9 +20,9 @@ import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.DeliveryPersonRepository;
 import com.example.demo.repository.PaymentRepository;
 import com.example.demo.repository.ProductModelRepository;
-import com.example.demo.view.CustomerVO;
-import com.example.demo.view.ProductVO;
-import com.example.demo.view.ShowCustomerVO;
+import com.example.demo.VO.CustomerVO;
+import com.example.demo.VO.ProductVO;
+import com.example.demo.VO.ShowCustomerVO;
 
 @Service
 public class CustomerService {
@@ -54,6 +54,7 @@ public class CustomerService {
             p.setSerialNumber(entry.getSerialNumber());
             products.add(p);
         }
+        customer.setDeprecated(false);
         customer.setDeliveryPerson(deliveryPersonRepository.findByName(customerVO.getDeliveryPerson()));
         customer.setProductList(products);
         customerRepository.save(customer);
@@ -62,10 +63,24 @@ public class CustomerService {
 
     public List<ShowCustomerVO> getAllCustomer() {
         List<Customer> customers = customerRepository.findAll();
-        List<ShowCustomerVO> result =
-                customers.stream().map(c -> new ShowCustomerVO(c, this.getDebtAmountByCustomer(c)))
+        List<ShowCustomerVO> result = customers.stream().filter(c -> !c.isDeprecated() )
+                .map(c -> new ShowCustomerVO(c, this.getDebtAmountByCustomer(c)))
                         .collect(Collectors.toList());
         return result;
+    }
+
+    public ResponseEntity deprecateCustomer(Integer billNumber, int year) {
+        List<Customer> customerList = customerRepository.getByBillNumberAndYear(billNumber, year);
+
+        if (customerList.size() == 0 || customerList.size() > 1) {
+            return new ResponseEntity<>(
+                    new Response(customerList.size() + "customer found for the given input", 400),
+                    HttpStatus.BAD_REQUEST);
+        }
+        Customer c = customerList.get(0);
+        c.setDeprecated(true);
+        customerRepository.save(c);
+        return new ResponseEntity<>(new Response("Customer is deleted", 200), HttpStatus.OK);
     }
 
     public List<Customer> getByBillNumberAndYear(int billNumber, int year) {

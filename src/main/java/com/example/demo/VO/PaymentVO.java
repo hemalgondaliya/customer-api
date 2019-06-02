@@ -1,4 +1,4 @@
-package com.example.demo.view;
+package com.example.demo.VO;
 
 public class PaymentVO {
 

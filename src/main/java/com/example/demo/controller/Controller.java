@@ -6,7 +6,7 @@ import com.example.demo.service.CustomerService;
 import com.example.demo.service.DeliveryPersonService;
 import com.example.demo.service.ModelService;
 import com.example.demo.service.PaymentService;
-import com.example.demo.view.*;
+import com.example.demo.VO.*;
 import io.swagger.annotations.ApiOperation;
 
 import java.util.List;
@@ -65,6 +65,13 @@ public class Controller {
         }
 
         return customerService.saveCustomer(customerVO);
+    }
+
+    @RequestMapping(value = "/customer/deprecate", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "Set deprecation for given customer", response = Iterable.class)
+    public ResponseEntity deprecateCustomer(@RequestBody CustomerIdentityVO customerIdentityVO) {
+        return customerService.deprecateCustomer(customerIdentityVO.getBillNumber(), customerIdentityVO.getYear());
     }
 
     @RequestMapping(value = "/deliveryPerson/getAll", method = RequestMethod.POST)
@@ -141,7 +148,7 @@ public class Controller {
     @RequestMapping(value = "/customer/find", method = RequestMethod.POST)
     @ResponseBody
     @ApiOperation(value = "Add payment for customer", response = Iterable.class)
-    public ResponseEntity findCustomerByBillAndYear(@RequestBody SearchCustomerForPaymentVO searchVO) {
+    public ResponseEntity findCustomerByBillAndYear(@RequestBody CustomerIdentityVO searchVO) {
 
         if (searchVO.getBillNumber() == null || searchVO.getYear() == 0) {
             return new ResponseEntity<>(new Response("Please provide valid data", 400),

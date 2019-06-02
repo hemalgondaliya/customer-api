@@ -1,6 +1,6 @@
-package com.example.demo.view;
+package com.example.demo.VO;
 
-public class SearchCustomerForPaymentVO {
+public class CustomerIdentityVO {
 
     private Integer billNumber;
 

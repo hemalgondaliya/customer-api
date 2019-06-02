@@ -122,12 +122,12 @@ CREATE TABLE gayatri.customer
     first_name character varying(50) COLLATE pg_catalog."default",
     last_name character varying(50) COLLATE pg_catalog."default",
     phone_no bigint NOT NULL,
+    second_phone_no bigint,
     reference_name character varying(50) COLLATE pg_catalog."default",
     delivery_person_id bigint NOT NULL,
+    deprecated boolean NOT NULL,
     CONSTRAINT customer_pkey PRIMARY KEY (id),
-    CONSTRAINT uko7srriun95pgx2p28knq410e0 UNIQUE (bill_no, phone_no)
-,
-    CONSTRAINT fk5ygsq76dofnud12qqh8gxe73f FOREIGN KEY (delivery_person_id)
+    CONSTRAINT fk_delivery_person_id FOREIGN KEY (delivery_person_id)
         REFERENCES gayatri.delivery_person (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
@@ -139,7 +139,6 @@ TABLESPACE pg_default;
 
 ALTER TABLE gayatri.customer
     OWNER to postgres;
-
 
 -- Table: gayatri.payment
 

@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +15,8 @@ import com.example.demo.modal.ProductModel;
 import com.example.demo.modal.Response;
 import com.example.demo.repository.BrandRepositiry;
 import com.example.demo.repository.ProductModelRepository;
-import com.example.demo.view.AllProductVO;
-import com.example.demo.view.ModelVO;
+import com.example.demo.VO.AllProductVO;
+import com.example.demo.VO.ModelVO;
 
 @Service
 public class ModelService {

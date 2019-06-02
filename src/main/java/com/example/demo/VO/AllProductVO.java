@@ -1,4 +1,4 @@
-package com.example.demo.view;
+package com.example.demo.VO;
 
 import com.example.demo.modal.ProductModel;
 

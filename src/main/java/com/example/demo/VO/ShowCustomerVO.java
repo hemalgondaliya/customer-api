@@ -1,4 +1,4 @@
-package com.example.demo.view;
+package com.example.demo.VO;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.demo.modal.Customer;
-import com.example.demo.modal.Payment;
 import com.example.demo.modal.Product;
 
 public class ShowCustomerVO {
@@ -16,6 +15,7 @@ public class ShowCustomerVO {
     String lastName;
     String referenceName;
     Long phoneNumber;
+    Long secondNumber;
     Date date;
     String address;
     String email;
@@ -36,6 +36,7 @@ public class ShowCustomerVO {
         this.lastName = customer.getLastName();
         this.referenceName = customer.getReferenceName();
         this.phoneNumber = customer.getPhoneNumber();
+        this.secondNumber = customer.getSecondNumber();
         this.date = customer.getDate();
         this.address = customer.getAddress();
         this.email = customer.getEmail();
@@ -88,6 +89,14 @@ public class ShowCustomerVO {
 
     public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Long getSecondNumber() {
+        return secondNumber;
+    }
+
+    public void setSecondNumber(Long secondNumber) {
+        this.secondNumber = secondNumber;
     }
 
     public String getDate() {

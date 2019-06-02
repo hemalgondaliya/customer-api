@@ -39,6 +39,9 @@ public class Customer {
     @NotNull(message = "Phone number can not be null")
     Long phoneNumber;
 
+    @Column(name = "second_phone_no",columnDefinition = "BIGINT")
+    Long secondNumber;
+
     @Column(name = "date",columnDefinition = "DATE")
     @NotNull(message = "Date can not be null")
     Date date;
@@ -54,6 +57,10 @@ public class Customer {
     @JoinColumn(name = "delivery_person_id")
     @NotNull(message = "Delivery person can not be null")
     DeliveryPerson deliveryPerson;
+
+    @Column(name = "deprecated", columnDefinition = "BOOLEAN")
+    @NotNull(message = "deprecated can not be null")
+    private boolean deprecated;
 
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "customer_id")
@@ -112,6 +119,14 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
+    public Long getSecondNumber() {
+        return secondNumber;
+    }
+
+    public void setSecondNumber(Long secondNumber) {
+        this.secondNumber = secondNumber;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -134,6 +149,14 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isDeprecated() {
+        return deprecated;
+    }
+
+    public void setDeprecated(boolean deprecated) {
+        this.deprecated = deprecated;
     }
 
     public DeliveryPerson getDeliveryPerson() {

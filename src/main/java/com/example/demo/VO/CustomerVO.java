@@ -1,4 +1,4 @@
-package com.example.demo.view;
+package com.example.demo.VO;
 
 import java.util.Date;
 import java.util.List;
@@ -16,6 +16,8 @@ public class CustomerVO {
     String referenceName;
 
     Long phoneNumber;
+
+    Long secondNumber;
 
     Date date;
 
@@ -40,6 +42,7 @@ public class CustomerVO {
         this.lastName = customer.getLastName();
         this.referenceName = customer.getReferenceName();
         this.phoneNumber = customer.getPhoneNumber();
+        this.secondNumber = customer.getSecondNumber();
         this.date = customer.getDate();
         this.address = customer.getAddress();
         this.email = customer.getEmail();
@@ -86,6 +89,14 @@ public class CustomerVO {
         this.phoneNumber = phoneNumber;
     }
 
+    public Long getSecondNumber() {
+        return secondNumber;
+    }
+
+    public void setSecondNumber(Long secondNumber) {
+        this.secondNumber = secondNumber;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -124,6 +135,7 @@ public class CustomerVO {
             cust.setAddress(this.address);
             cust.setDate(this.date);
             cust.setPhoneNumber(this.phoneNumber);
+            cust.setSecondNumber(this.secondNumber);
             cust.setReferenceName(this.referenceName);
             cust.setLastName(this.lastName);
             cust.setFirstName(this.firstName);
