@@ -65,14 +65,14 @@ public class Customer {
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "customer_id")
     @NotNull(message = "Product list can not be null")
-    List<Product> productList;
+    List<Purchase> purchaseList;
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<Purchase> getPurchaseList() {
+        return purchaseList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setPurchaseList(List<Purchase> purchaseList) {
+        this.purchaseList = purchaseList;
     }
 
     public Long getId() {

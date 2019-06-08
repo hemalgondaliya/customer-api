@@ -4,13 +4,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "purchase")
+public class Purchase {
 
     @Id
-    @GeneratedValue(generator = "product_id_generator")
-    @SequenceGenerator(name = "product_id_generator",
-            sequenceName = "product_number_sequence",
+    @GeneratedValue(generator = "purchase_id_generator")
+    @SequenceGenerator(name = "purchase_id_generator",
+            sequenceName = "purchase_number_sequence",
             allocationSize = 1
     )
     private Long id;
@@ -26,6 +26,10 @@ public class Product {
     @Column(name = "price", columnDefinition = "INTEGER")
     @NotNull(message = "Price for product can not be null")
     Integer price;
+
+    @Column(name = "qty", columnDefinition = "INTEGER")
+    @NotNull(message = "QTY for product can not be null")
+    Integer qty;
 
     public Long getId() {
         return id;
@@ -53,5 +57,13 @@ public class Product {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getQty() {
+        return qty;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
     }
 }

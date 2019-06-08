@@ -177,14 +177,15 @@ ALTER TABLE gayatri.payment
 
 -- DROP TABLE gayatri.product;
 
-CREATE TABLE gayatri.product
+CREATE TABLE gayatri.purchase
 (
     id bigint NOT NULL,
     price integer NOT NULL,
-    ser_no character varying(100) COLLATE pg_catalog."default",
+    qty   integer NOT NULL,
+    ser_no character varying(1000) COLLATE pg_catalog."default",
     product_model_id bigint NOT NULL,
     customer_id bigint,
-    CONSTRAINT product_pkey PRIMARY KEY (id),
+    CONSTRAINT purchase_pkey PRIMARY KEY (id),
     CONSTRAINT fk3ac4n7gvn3ej9hr6h8d8pkex7 FOREIGN KEY (product_model_id)
         REFERENCES gayatri.product_model (id) MATCH SIMPLE
         ON UPDATE NO ACTION
@@ -199,7 +200,7 @@ WITH (
 )
 TABLESPACE pg_default;
 
-ALTER TABLE gayatri.product
+ALTER TABLE gayatri.purchase
     OWNER to postgres;
 
 
@@ -260,6 +261,15 @@ ALTER SEQUENCE gayatri.payment_id_number_sequence
 CREATE SEQUENCE gayatri.product_number_sequence;
 
 ALTER SEQUENCE gayatri.product_number_sequence
+    OWNER TO postgres;
+
+-- SEQUENCE: gayatri.purchase_number_sequence
+
+-- DROP SEQUENCE gayatri.purchase_number_sequence;
+
+CREATE SEQUENCE gayatri.purchase_number_sequence;
+
+ALTER SEQUENCE gayatri.purchase_number_sequence
     OWNER TO postgres;
 
 -- SEQUENCE: gayatri.product_model_number_sequence

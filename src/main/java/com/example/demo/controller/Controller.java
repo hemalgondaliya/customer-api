@@ -6,7 +6,7 @@ import com.example.demo.service.CustomerService;
 import com.example.demo.service.DeliveryPersonService;
 import com.example.demo.service.ModelService;
 import com.example.demo.service.PaymentService;
-import com.example.demo.VO.*;
+import com.example.demo.vo.*;
 import io.swagger.annotations.ApiOperation;
 
 import java.util.List;

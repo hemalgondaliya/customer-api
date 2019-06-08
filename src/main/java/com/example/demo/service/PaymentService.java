@@ -12,7 +12,7 @@ import com.example.demo.modal.Customer;
 import com.example.demo.modal.Payment;
 import com.example.demo.modal.Response;
 import com.example.demo.repository.PaymentRepository;
-import com.example.demo.VO.PaymentVO;
+import com.example.demo.vo.PaymentVO;
 
 @Service
 public class PaymentService {

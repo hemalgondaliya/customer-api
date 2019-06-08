@@ -1,12 +1,13 @@
-package com.example.demo.VO;
+package com.example.demo.vo;
+
+import java.util.List;
 
 public class ProductVO {
 
     private String model;
-
-    private String serialNumber;
-
+    private List<String> serialNumber;
     private Integer price;
+    private Integer qty;
 
 
     public String getModel() {
@@ -17,11 +18,11 @@ public class ProductVO {
         this.model = model;
     }
 
-    public String getSerialNumber() {
+    public List<String> getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(String serialNumber) {
+    public void setSerialNumber(List<String> serialNumber) {
         this.serialNumber = serialNumber;
     }
 
@@ -31,5 +32,13 @@ public class ProductVO {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getQty() {
+        return qty;
+    }
+
+    public void setQty(Integer qty) {
+        this.qty = qty;
     }
 }

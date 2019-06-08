@@ -13,16 +13,16 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.modal.Customer;
 import com.example.demo.modal.Payment;
-import com.example.demo.modal.Product;
+import com.example.demo.modal.Purchase;
 import com.example.demo.modal.ProductModel;
 import com.example.demo.modal.Response;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.DeliveryPersonRepository;
 import com.example.demo.repository.PaymentRepository;
 import com.example.demo.repository.ProductModelRepository;
-import com.example.demo.VO.CustomerVO;
-import com.example.demo.VO.ProductVO;
-import com.example.demo.VO.ShowCustomerVO;
+import com.example.demo.vo.CustomerVO;
+import com.example.demo.vo.ProductVO;
+import com.example.demo.vo.ShowCustomerVO;
 
 @Service
 public class CustomerService {
@@ -43,20 +43,21 @@ public class CustomerService {
 
     public ResponseEntity saveCustomer(CustomerVO customerVO) {
         Customer customer = customerVO.getCustomer();
-        List<Product> products = new ArrayList<>();
+        List<Purchase> purchases = new ArrayList<>();
         List<ProductVO> productVOS = customerVO.getSelectedProducts();
 
         for (ProductVO entry : productVOS) {
             ProductModel model = modelRepository.findByName(entry.getModel());
-            Product p = new Product();
+            Purchase p = new Purchase();
             p.setProductModel(model);
             p.setPrice(entry.getPrice());
-            p.setSerialNumber(entry.getSerialNumber());
-            products.add(p);
+            p.setSerialNumber(entry.getSerialNumber().toString());
+            p.setQty(entry.getQty());
+            purchases.add(p);
         }
         customer.setDeprecated(false);
         customer.setDeliveryPerson(deliveryPersonRepository.findByName(customerVO.getDeliveryPerson()));
-        customer.setProductList(products);
+        customer.setPurchaseList(purchases);
         customerRepository.save(customer);
         return new ResponseEntity<>(new Response("Customer saved", 200), HttpStatus.OK);
     }
@@ -105,8 +106,8 @@ public class CustomerService {
     }
 
     private Integer getBillAmountByCustomer(Customer customer) {
-        List<Product> productList = customer.getProductList();
-        int billAmount = productList.stream().map(p -> p.getPrice())
+        List<Purchase> purchaseList = customer.getPurchaseList();
+        int billAmount = purchaseList.stream().map(p -> p.getPrice()*p.getQty())
                 .collect(Collectors.summingInt(Integer::intValue));
         return billAmount;
     }

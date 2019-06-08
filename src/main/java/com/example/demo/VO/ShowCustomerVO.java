@@ -1,4 +1,4 @@
-package com.example.demo.VO;
+package com.example.demo.vo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.demo.modal.Customer;
-import com.example.demo.modal.Product;
+import com.example.demo.modal.Purchase;
 
 public class ShowCustomerVO {
 
@@ -20,7 +20,7 @@ public class ShowCustomerVO {
     String address;
     String email;
     String deliveryPerson;
-    List<Product> productList;
+    List<Purchase> purchaseList;
     Integer debitAmount;
     List<String> purchase;
 
@@ -42,13 +42,14 @@ public class ShowCustomerVO {
         this.email = customer.getEmail();
         this.debitAmount = debtAmount;
         this.deliveryPerson = customer.getDeliveryPerson().getName();
-        this.productList = customer.getProductList();
+        this.purchaseList = customer.getPurchaseList();
         this.initProducts();
     }
 
     private void initProducts() {
-        this.purchase = this.productList.stream().map(p -> p.getProductModel().getBrand().getName() + "-" +
-                p.getProductModel().getBrand().getCategory()).collect(Collectors.toList());
+        this.purchase = this.purchaseList
+                .stream().map(p -> p.getProductModel().getBrand().getName() + "-" +
+                p.getProductModel().getBrand().getCategory() + "("+p.getQty()+")").collect(Collectors.toList());
     }
 
     public Integer getBillNumber() {

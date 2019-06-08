@@ -15,8 +15,8 @@ import com.example.demo.modal.ProductModel;
 import com.example.demo.modal.Response;
 import com.example.demo.repository.BrandRepositiry;
 import com.example.demo.repository.ProductModelRepository;
-import com.example.demo.VO.AllProductVO;
-import com.example.demo.VO.ModelVO;
+import com.example.demo.vo.AllProductVO;
+import com.example.demo.vo.ModelVO;
 
 @Service
 public class ModelService {

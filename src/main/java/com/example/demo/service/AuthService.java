@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.VO.JwtAuthenticationResponse;
+import com.example.demo.vo.JwtAuthenticationResponse;
 import com.example.demo.modal.User;
 import com.example.demo.security.JwtTokenProvider;
 import com.example.demo.security.UserPrincipal;

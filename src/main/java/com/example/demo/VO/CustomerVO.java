@@ -1,4 +1,4 @@
-package com.example.demo.VO;
+package com.example.demo.vo;
 
 import java.util.Date;
 import java.util.List;
@@ -7,27 +7,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CustomerVO {
 
-    Integer billNumber;
-
-    String firstName;
-
-    String lastName;
-
-    String referenceName;
-
-    Long phoneNumber;
-
-    Long secondNumber;
-
-    Date date;
-
-    String address;
-
-    String email;
-
-    String deliveryPerson;
-
-    List<ProductVO> selectedProducts;
+    private Integer billNumber;
+    private String firstName;
+    private String lastName;
+    private String referenceName;
+    private Long phoneNumber;
+    private Long secondNumber;
+    private Date date;
+    private String address;
+    private String email;
+    private String deliveryPerson;
+    private List<ProductVO> selectedProducts;
 
     @JsonIgnore
     Customer customer;
